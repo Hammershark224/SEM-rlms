@@ -8,7 +8,6 @@ use App\Models\LecturerDetail;
 use App\Models\TechnicianDetail;
 use App\Models\SystemAdministrationDetail;
 use App\Models\User;
-
 class UserController extends Controller
 {
     //

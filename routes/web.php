@@ -52,6 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/UserProfile',[UserProfileController::class, 'show'])->name('userprofile');
 Route::post('/UserProfile/Update',[UserProfileController::class, 'update'])->name('profile.update');
+
 Route::get("/Complaint", [ComplaintController::class, 'index'])->name("ManageComplaint.Complaint");
 Route::get("/Complaint/CreateComplaint", [ComplaintController::class, 'create'])->name("ManageComplaint.CreateComplaint");
 Route::get("/submit-complaint", [ComplaintController::class, 'create'])->name("ManageComplaint.CreateComplaint");;
