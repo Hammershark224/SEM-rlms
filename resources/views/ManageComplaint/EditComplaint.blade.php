@@ -2,12 +2,12 @@
 
 @section('content')
     @include('layouts.navbars.auth.topnav', ['title' => 'Edit Complaint'])
-    
+
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <form role="form" method="POST" action="{{ route('ManageComplaint.update-complaint', ['complaint' => $complaint->id]) }}" enctype="multipart/form-data">
+                    <form role="form" method="POST" action="{{ route('ManageComplaint.update-complaint', ['complaint' => $complaint->complaint_ID]) }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         @method('PUT')
                         <div class="card-header pb-0">
@@ -22,7 +22,7 @@
                                         <label for="example-text-input" class="form-control-label">Full Name</label>
                                         <input class="form-control" type="text" name="name" value="{{ old('name', $complaint->name) }}">
                                     </div>
-                                </div>   
+                                </div>
                                 <div class="col-sm-6" style="margin-bottom: 20px;">
                                     <label for="inputName5" class="form-label">Complaint Type</label>
                                     <select class="form-select" name="complaint_type" id="complainttype" aria-label="Default select example">
@@ -37,6 +37,22 @@
                                     <div class="col-sm-6">
                                         <textarea name="complaint_description" required="required" cols="10" rows="10" class="form-control" maxlength="2000">{{ old('complaint_description', $complaint->complaint_description) }}</textarea>
                                     </div>
+                                </div>
+                                <div class="col-md-12" style="margin-bottom: 20px;">
+                                    <div class="form-group">
+                                        <label for="image" class="form-control-label">Upload Image</label>
+                                        <input class="form-control" type="file" name="image" id="image">
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="margin-bottom: 20px;">
+                                    @if ($complaint->image_path)
+                                        <div class="form-group">
+                                            <label for="current-image" class="form-control-label">Current Image</label>
+                                            <div>
+                                                <img src="{{ asset($complaint->image_path) }}" alt="Current Complaint Image" style="max-width: 100px;">
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
                                 <div style="margin-top: 20px;">
                                     <button style="background-color: #007bff; color: #fff; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px; margin-left: 0px">Update</button>
