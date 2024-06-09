@@ -25,7 +25,7 @@
 
             @if ($role == "student")
             <li class="nav-item">
-                <a class="nav-link {{ Route::currentRouteName() == 'show-report' ? 'active' : '' }}" href="{{ route('userprofile') }}">
+                <a class="nav-link {{ Route::currentRouteName() == 'userprofile' ? 'active' : '' }}" href="{{ route('userprofile') }}">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-chart-bar-32 text-dark text-sm opacity-10"></i>
                     </div>
@@ -56,13 +56,13 @@
             <li class="nav-item">
                 <a class="nav-link {{ Route::currentRouteName() == 'userprofile' ? 'active' : '' }}" href="{{ route('userprofile') }}">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-chart-bar-32 text-dark text-sm opacity-10"></i>
+                        <i class="fa fa-user text-dark text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">User Profile</span>
                 </a>
-                <a class="nav-link {{ str_contains(request()->url(), 'user-manage') == true ? 'active' : '' }}" href="{{ route('user.manage') }}">
+                <a class="nav-link {{ Route::currentRouteName() == 'user.manage' ? 'active' : '' }}" href="{{ route('user.manage') }}">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-basket text-dark text-sm opacity-10"></i>
+                        <i class="fa fa-user-plus text-dark text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">User Management</span>
                 </a>
@@ -84,11 +84,7 @@
                     </div>
                     <span class="nav-link-text ms-1">Attendance</span>
                 </a>
-<<<<<<< Updated upstream
-                <a class="nav-link {{ str_contains(request()->url(), 'ManageComplaint.Complaint') == true ? 'active' : '' }}" href="{{ route('ManageComplaint.Complaint') }}">
-=======
-                <a class="nav-link {{ str_contains(request()->url(), 'ManageComplaint.Complaint') == true ? 'active' : '' }}" href="{{route('ManageComplaint.Complaint'}}">
->>>>>>> Stashed changes
+                <a class="nav-link {{ str_contains(request()->url(), 'ManageComplaint.Complaint') == true ? 'active' : '' }}" href="{{route('ManageComplaint.Complaint')}}">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-basket text-dark text-sm opacity-10"></i>
                     </div>
@@ -105,7 +101,7 @@
 
             @if ($role == "technical")
             <li class="nav-item">
-                <a class="nav-link {{ Route::currentRouteName() == 'show-report' ? 'active' : '' }}" href="{{ route('userprofile') }}">
+                <a class="nav-link {{ Route::currentRouteName() == 'userprofile' ? 'active' : '' }}" href="{{ route('userprofile') }}">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-chart-bar-32 text-dark text-sm opacity-10"></i>
                     </div>
@@ -128,7 +124,7 @@
 
             @if ($role == "lecturer")
             <li class="nav-item">
-                <a class="nav-link {{ Route::currentRouteName() == 'show-report' ? 'active' : '' }}" href="{{ route('userprofile') }}">
+                <a class="nav-link {{ Route::currentRouteName() == 'userprofile' ? 'active' : '' }}" href="{{ route('userprofile') }}">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-chart-bar-32 text-dark text-sm opacity-10"></i>
                     </div>
