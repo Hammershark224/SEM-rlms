@@ -8,7 +8,7 @@
             <div class="col-md-12">
                 <div class="card">
                     
-                    <form role="form" method="post" action="{{ route('user.manageView') }}" enctype="multipart/form-data">
+                    <form role="form" action="{{ route('user.manage', $dataUser->role) }}" enctype="multipart/form-data">
                     {{csrf_field()}}
                         <div class="card-header pb-0">
                             <div class="d-flex align-items-center">

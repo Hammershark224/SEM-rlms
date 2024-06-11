@@ -11,10 +11,11 @@ use App\Models\User;
 class UserController extends Controller
 {
     //
-    public function index() {
-        $dataUser = User::all();
-        return view('UserManagement.UserManage',['dataUser'=>$dataUser]);
+    public function index($role) {
+        $dataUser = User::where('role', $role)->get();
+        return view('UserManagement.userManage', ['dataUser' => $dataUser, 'role' => $role]);
     }
+    
 
     public function create() {
         return view('UserManagement.CreateUser');
@@ -53,7 +54,7 @@ class UserController extends Controller
                 ]);
                 break;
         }
-        return redirect(route('user.manage'))->with('success','New Data Insert');
+        return redirect(route('user.manage', $user->role))->with('success','New Data Insert');
     }
     
     public function show($id)
@@ -154,7 +155,7 @@ class UserController extends Controller
                 break;
         }
     
-        return redirect(route('user.manage'))->with('success', 'Data Successfully Updated');
+        return redirect(route('user.manage', $dataUser->role))->with('success', 'Data Successfully Updated');
     }
     
 
@@ -194,7 +195,7 @@ class UserController extends Controller
         // Delete the user
         $dataUser->delete();
     
-        return redirect(route('user.manage'))->with('success','Data Successfully Deleted');
+        return redirect(route('user.manage', $dataUser->role))->with('success','Data Successfully Deleted');
     }
     
     

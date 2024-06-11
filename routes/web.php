@@ -40,10 +40,10 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('/UserManagement',[UserController::class, 'index'])->name('user.manage');
-	Route::post('/UserManagement',[UserController::class, 'index'])->name('user.manageView');
-	Route::get('/UserManagement/CreateUser',[UserController::class, 'create'])->name('user.create');
-	Route::post('/UserManagement/Create',[UserController::class, 'store'])->name('user.store');
+	Route::get('/user-management/{role}', [UserController::class, 'index'])->name('user.manage');
+	// Route::post('/UserManagement',[UserController::class, 'index'])->name('user.manageView');
+	Route::get('/UserManagement/Create',[UserController::class, 'create'])->name('user.create');
+	Route::post('/UserManagement/Store',[UserController::class, 'store'])->name('user.store');
 	Route::get('/UserManagement/{id}/View',[UserController::class, 'show'])->name('user.view');
 	Route::get('/UserManagement/{id}/Edit',[UserController::class, 'edit'])->name('user.edit');
 	Route::post('/UserManagement/{id}/Update',[UserController::class, 'update'])->name('user.update');
