@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attendence_details_tables', function (Blueprint $table) {
-            $table->id();
-            $table->string("student_ID")->references("student_ID")->on("student_details");
-            $table->string("lecturer_ID")->references("lecturer_ID")->on("lecturer_details");
-            $table->string("lab_ID")->references("lab_ID")->on("lab_details");
+        Schema::create('attendance_details', function (Blueprint $table) {
+            $table->id("attendance_ID");
+            $table->foreignId('student_ID')->constrained('student_details', 'student_ID');
+            $table->foreignId('lecturer_ID')->constrained('lecturer_details', 'lecturer_ID');
+            $table->foreignId('lab_ID')->constrained('lab_details', 'lab_ID');
             $table->string('attendance_status');
             $table->timestamps();
         });
+
     }
 
     /**
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attendence_details_tables');
+        Schema::dropIfExists('attendence_details');
     }
 };

@@ -1,5 +1,3 @@
-<!-- resources/views/ManageAttendance/viewUpdateAttendance.blade.php -->
-
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 
 @section('content')
@@ -19,8 +17,7 @@
                             <div class="form-row">
                                 <div class="col-md-4 mb-3">
                                     <label for="updateId">Update ID:</label>
-                                    <input type="text" class="form-control" id="updateId" name="updateId"
-                                        value="{{ old('updateId') }}" required>
+                                    <input type="text" class="form-control" id="updateId" name="updateId" value="{{ old('updateId') }}" required>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="updateAction">Select Action:</label>
@@ -42,19 +39,19 @@
                                     <th>ID</th>
                                     <th>Name Lecture</th>
                                     <th>Name Lab</th>
+                                    <th>Lab Location</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($attendanceData as $attendance)
-                                @if (in_array($attendance->attendance_status, ['attend', 'absent']))
-                                <tr>
-                                    <td>{{ $attendance->id }}</td>
-                                    <td>{{ optional($attendance->lecturer)->name }}</td>
-                                    <td>{{ optional($attendance->lab)->lab_name }}</td>
-                                    <td>{{ $attendance->attendance_status }}</td>
-                                </tr>
-                                @endif
+                                    <tr>
+                                        <td>{{ $attendance->attendance_ID }}</td>
+                                        <td>{{ optional($attendance->lecturer)->name }}</td>
+                                        <td>{{ optional($attendance->lab)->lab_name }}</td>
+                                        <td>{{ optional($attendance->lab)->lab_location }}</td>
+                                        <td>{{ $attendance->attendance_status }}</td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>

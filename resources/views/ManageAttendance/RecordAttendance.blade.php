@@ -1,5 +1,3 @@
-<!-- resources/views/ManageAttendance/RecordAttendance.blade.php -->
-
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 
 @section('content')
@@ -30,20 +28,24 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name Student</th>
-                                    <th>Name Lab</th>
+                                    <th>No</th>
+                                    <th>Student Name</th>
+                                    <th>Lecturer Name</th>
+                                    <th>Lab Name</th>
+                                    <th>Lab Location</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($attendanceData as $attendance)
-                                <tr>
-                                    <td>{{ $attendance->id }}</td>
-                                    <td>{{ optional($attendance->student)->name }}</td>
-                                    <td>{{ optional($attendance->lab)->lab_name }}</td>
-                                    <td>{{ $attendance->attendance_status }}</td>
-                                </tr>
+                                @foreach ($attendanceData as $index => $attendance)
+                                    <tr>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ optional($attendance->student->user)->username }}</td>
+                                        <td>{{ optional($attendance->lecturer->user)->username }}</td>
+                                        <td>{{ optional($attendance->lab)->lab_name }}</td>
+                                        <td>{{ optional($attendance->lab)->lab_location }}</td>
+                                        <td>{{ $attendance->attendance_status }}</td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>

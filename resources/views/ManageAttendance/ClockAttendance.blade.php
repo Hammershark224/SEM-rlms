@@ -1,5 +1,3 @@
-<!-- resources/views/ManageAttendance/ClockAttendance.blade.php -->
-
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 
 @section('content')
@@ -16,24 +14,26 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name Lecture</th>
-                                    <th>Name Lab</th>
+                                    <th>No</th>
+                                    <th>Student Name</th>
+                                    <th>Lecturer Name</th>
+                                    <th>Lab Name</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($pendingAttendance as $attendance)
-                                        <tr>
-                                        <td>{{ $attendance->id }}</td>
-                                        <td>{{ $attendance->lecturer->name }}</td>
-                                        <td>{{ $attendance->lab->lab_name }}</td>
+                                @foreach ($pendingAttendance as $index => $attendance)
+                                    <tr>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ optional($attendance->student->user)->username }}</td>
+                                        <td>{{ optional($attendance->lecturer->user)->username }}</td>
+                                        <td>{{ optional($attendance->lab)->lab_name }}</td>
                                         <td>{{ $attendance->attendance_status }}</td>
                                         <td>
                                             <form action="{{ route('ManageAttendance.UpdateStatus') }}" method="POST">
                                                 @csrf
-                                                <input type="hidden" name="attendanceId" value="{{ $attendance->id }}">
+                                                <input type="hidden" name="attendanceId" value="{{ $attendance->attendance_ID }}">
                                                 <select name="newStatus">
                                                     <option value="Present">Present</option>
                                                     <option value="Absent">Absent</option>
@@ -41,7 +41,7 @@
                                                 <button type="submit" class="btn btn-primary btn-sm">Update</button>
                                             </form>
                                         </td>
-                                        </tr>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>

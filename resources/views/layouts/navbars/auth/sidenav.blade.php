@@ -1,5 +1,5 @@
 @php
-    $role = Auth::user()->role;
+$role = Auth::user()->role;
 @endphp
 
 <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
@@ -24,117 +24,119 @@
             </li>
 
             @if ($role == "student")
-            <li class="nav-item">
-                <a class="nav-link {{ Route::currentRouteName() == 'userprofile' ? 'active' : '' }}" href="{{ route('userprofile') }}">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">User Profile</span>
-                </a>
-                <a class="nav-link {{ Route::currentRouteName() == 'show-report' ? 'active' : '' }}" href="#">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Attendance</span>
-                </a>
-                <a class="nav-link {{ Route::currentRouteName() == 'show-report' ? 'active' : '' }}" href="#">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-archive-2 text-dark text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Lab Booking</span>
-                </a>
-                <a class="nav-link {{ Route::currentRouteName() == 'show-report' ? 'active' : '' }}" href="#">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-email-83 text-dark text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Complaint</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::currentRouteName() == 'userprofile' ? 'active' : '' }}" href="{{ route('userprofile') }}">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">User Profile</span>
+                    </a>
+                <a class="nav-link {{ Route::currentRouteName() == 'ManageAttendance.index' ? 'active' : '' }}"
+                    href="{{ route('ManageAttendance.index') }}">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Attendance</span>
+                    </a>
+                    <a class="nav-link {{ Route::currentRouteName() == 'show-report' ? 'active' : '' }}" href="#">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-archive-2 text-dark text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Lab Booking</span>
+                    </a>
+                    <a class="nav-link {{ Route::currentRouteName() == 'show-report' ? 'active' : '' }}" href="#">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-email-83 text-dark text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Complaint</span>
+                    </a>
+                </li>
             @endif
 
             @if ($role == "admin")
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-user-check text-dark text-sm opacity-10"></i>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-user-check text-dark text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">User Management</span>
+                    </a>
+                    <div class="collapse" id="collapseExample">
+                        <ul class="navbar-nav ms-3">
+                            <li class="nav-item">
+                                <a class="nav-link {{ Route::currentRouteName() == 'ingredient' ? 'active' : '' }}" href="{{ route('user.manage', 'admin') }}">
+                                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                        <i class="fas fa-user-tie text-dark text-sm opacity-10"></i>
+                                    </div>
+                                    <span class="nav-link-text ms-1">Administrators List</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ Route::currentRouteName() == 'ingredient.manage' ? 'active' : '' }}" href="{{ route('user.manage', 'technical') }}">
+                                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                        <i class="fas fa-tools text-dark text-sm opacity-10"></i>
+                                    </div>
+                                    <span class="nav-link-text ms-1">Technicians List</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ Route::currentRouteName() == 'ingredient.manage' ? 'active' : '' }}" href="{{ route('user.manage', 'lecturer') }}">
+                                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                        <i class="fas fa-chalkboard-teacher text-dark text-sm opacity-10"></i>
+                                    </div>
+                                    <span class="nav-link-text ms-1">Lecturers List</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ Route::currentRouteName() == 'ingredient.manage' ? 'active' : '' }}" href="{{ route('user.manage', 'student') }}">
+                                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                        <i class="fas fa-user-graduate text-dark text-sm opacity-10"></i>
+                                    </div>
+                                    <span class="nav-link-text ms-1">Students List</span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                    <span class="nav-link-text ms-1">User Management</span>
-                </a>
-                <div class="collapse" id="collapseExample">
-                    <ul class="navbar-nav ms-3">
-                        <li class="nav-item">
-                            <a class="nav-link {{ Route::currentRouteName() == 'ingredient' ? 'active' : '' }}" href="{{ route('user.manage', 'admin') }}">
-                                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                    <i class="fas fa-user-tie text-dark text-sm opacity-10"></i>
-                                </div>
-                                <span class="nav-link-text ms-1">Administrators List</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ Route::currentRouteName() == 'ingredient.manage' ? 'active' : '' }}" href="{{ route('user.manage', 'technical') }}">
-                                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                    <i class="fas fa-tools text-dark text-sm opacity-10"></i>
-                                </div>
-                                <span class="nav-link-text ms-1">Technicians List</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ Route::currentRouteName() == 'ingredient.manage' ? 'active' : '' }}" href="{{ route('user.manage', 'lecturer') }}">
-                                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                    <i class="fas fa-chalkboard-teacher text-dark text-sm opacity-10"></i>
-                                </div>
-                                <span class="nav-link-text ms-1">Lecturers List</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ Route::currentRouteName() == 'ingredient.manage' ? 'active' : '' }}" href="{{ route('user.manage', 'student') }}">
-                                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                    <i class="fas fa-user-graduate text-dark text-sm opacity-10"></i>
-                                </div>
-                                <span class="nav-link-text ms-1">Students List</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ Route::currentRouteName() == 'userprofile' ? 'active' : '' }}" href="{{ route('userprofile') }}">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-user text-dark text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">User Profile</span>
-                </a>
-                <a class="nav-link {{ str_contains(request()->url(), 'user-management') ? 'active' : '' }}" href="#">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-basket text-dark text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Lab Assignment</span>
-                </a>
-                {{-- <a class="nav-link {{ str_contains(request()->url(), 'user-management') ? 'active' : '' }}" href="">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-basket text-dark text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Lab Asset</span>
-                </a> --}}
-                <a class="nav-link {{ str_contains(request()->url(), 'user-management') ? 'active' : '' }}" href="#">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Attendance</span>
-                </a>
-                <a class="nav-link {{ str_contains(request()->url(), 'ManageComplaint.Complaint') ? 'active' : '' }}" href="{{route('ManageComplaint.Complaint')}}">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-email-83 text-dark text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Complaint & Response</span>
-                </a>
-                {{-- <a class="nav-link {{ str_contains(request()->url(), 'user-management') ? 'active' : '' }}" href="">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Lab Booking</span>
-                </a> --}}
-            </li>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::currentRouteName() == 'userprofile' ? 'active' : '' }}" href="{{ route('userprofile') }}">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-user text-dark text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">User Profile</span>
+                    </a>
+                    <a class="nav-link {{ str_contains(request()->url(), 'user-management') ? 'active' : '' }}" href="#">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-basket text-dark text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Lab Assignment</span>
+                    </a>
+                    {{-- <a class="nav-link {{ str_contains(request()->url(), 'user-management') ? 'active' : '' }}" href="">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-basket text-dark text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Lab Asset</span>
+                    </a> --}}
+                    <a class="nav-link {{ Route::currentRouteName() == 'ManageAttendance.RecordAttendance' ? 'active' : '' }}"
+                        href="{{ route('ManageAttendance.RecordAttendance') }}">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Attendance</span>
+                    </a>
+                    <a class="nav-link {{ str_contains(request()->url(), 'ManageComplaint.Complaint') ? 'active' : '' }}" href="{{route('ManageComplaint.Complaint')}}">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-email-83 text-dark text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Complaint & Response</span>
+                    </a>
+                    {{-- <a class="nav-link {{ str_contains(request()->url(), 'user-management') ? 'active' : '' }}" href="">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Lab Booking</span>
+                    </a> --}}
+                </li>
             @endif
 
             @if ($role == "technical")

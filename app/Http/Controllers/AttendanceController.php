@@ -38,7 +38,7 @@ class AttendanceController extends Controller
     public function viewAttendance(Request $request)
     {
         // Fetch data from the database using Eloquent
-        $attendanceData = AttendanceDetail::with(['lecturer', 'lab'])
+        $attendanceData = AttendanceDetail::with(['student.user', 'lecturer.user', 'lab'])
             ->when($request->has('labName'), function ($query) use ($request) {
                 $query->whereHas('lab', function ($labQuery) use ($request) {
                     $labQuery->where('lab_name', 'like', '%' . $request->input('labName') . '%');
@@ -51,7 +51,10 @@ class AttendanceController extends Controller
 
     public function viewClockAttendance(Request $request)
     {
-        $pendingAttendance = AttendanceDetail::where('attendance_status', 'Pending')->get();
+        // Fetch data from the database using Eloquent, filtering by 'Pending' status
+        $pendingAttendance = AttendanceDetail::with(['student.user', 'lecturer.user', 'lab'])
+            ->where('attendance_status', 'Pending')
+            ->get();
 
         return view('ManageAttendance.ClockAttendance', compact('pendingAttendance'));
     }
@@ -59,6 +62,10 @@ class AttendanceController extends Controller
     public function updateAttendanceStatus(Request $request)
     {
         // Validate the request data here
+        $request->validate([
+            'attendanceId' => 'required|exists:attendance_details,attendance_ID',
+            'newStatus' => 'required|in:Present,Absent'
+        ]);
 
         $attendanceId = $request->input('attendanceId');
         $newStatus = $request->input('newStatus');

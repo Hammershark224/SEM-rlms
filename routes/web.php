@@ -77,17 +77,13 @@ Route::put('/ViewLabAssetTech/{assetDetails}', [AssetController::class, 'update'
 
 //Manage Attendance routes
 Route::get('/ManageAttendance', [AttendanceController::class, 'index'])->name('ManageAttendance.index');
-
-Route::get('/ManageAttendance/View-Attendance', [AttendanceController::class, 'view'])->name('ManageAttendance.ViewAttendance');
-Route::get('/ManageAttendance/Clock-Attendance', [AttendanceController::class, 'clock'])->name('ManageAttendance.ClockAttendance');
-Route::get('/ManageAttendance/Update-Attendance', [AttendanceController::class, 'update'])->name('ManageAttendance.UpdateAttendance');
-Route::get('/ManageAttendance/Record-Attendance', [AttendanceController::class, 'record'])->name('ManageAttendance.RecordAttendance');
-
+// Route::get('/ManageAttendance/View-Attendance', [AttendanceController::class, 'view'])->name('ManageAttendance.ViewAttendance');
+// Route::get('/ManageAttendance/Clock-Attendance', [AttendanceController::class, 'clock'])->name('ManageAttendance.ClockAttendance');
+// Route::get('/ManageAttendance/Update-Attendance', [AttendanceController::class, 'update'])->name('ManageAttendance.UpdateAttendance');
+// Route::get('/ManageAttendance/Record-Attendance', [AttendanceController::class, 'record'])->name('ManageAttendance.RecordAttendance');
 Route::get('/ManageAttendance/View-Attendance', [AttendanceController::class, 'viewAttendance'])->name('ManageAttendance.ViewAttendance');
 Route::get('/ManageAttendance/Clock-Attendance', [AttendanceController::class, 'viewClockAttendance'])->name('ManageAttendance.ClockAttendance');
-// Route::get('/ManageAttendance/Update-Attendance', [AttendanceController::class, 'viewUpdateAttendance'])->name('ManageAttendance.UpdateAttendance');
 Route::get('/ManageAttendance/Record-Attendance', [AttendanceController::class, 'recordAttendance'])->name('ManageAttendance.RecordAttendance');
 Route::post('/ManageAttendance/UpdateStatus', [AttendanceController::class, 'updateAttendanceStatus'])->name('ManageAttendance.UpdateStatus');
-
 Route::get('/ManageAttendance/Update-Attendance', [AttendanceController::class, 'viewUpdateAttendance'])->name('ManageAttendance.ViewUpdateAttendance');
 Route::post('/ManageAttendance/Update-Attendance', [AttendanceController::class, 'updateAttendance'])->name('ManageAttendance.UpdateAttendance');
