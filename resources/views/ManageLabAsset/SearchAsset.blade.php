@@ -1,13 +1,18 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 
 @section('content')
-    @include('layouts.navbars.auth.topnav', ['title' => 'Asset Report Form'])
+    @include('layouts.navbars.auth.topnav', ['title' => 'Tables'])
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between pb-0">
                     <h6> Display Table Assets</h6>
+
+
+                    <div class="col-auto">
+                        <a class="btn btn-danger" href="{{ route('ManageLabAsset.LabAsset') }} ">RETURN</a>
+                    </div>
                 </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
@@ -29,14 +34,21 @@
                                 <tbody>
                                     @foreach($assets as $asset)
                                     <tr>
-                                        <td scope="row" class="text-center text: dark; ">{{ $asset->lab_name }}</td>
-                                        <td scope="row" class="text-center text: dark;  ">{{ $asset->asset_name }}</td>
-                                        <td scope="row" class="text-center text: dark; ps-2">{{ $asset->asset_status }}</td>
-                                        <td scope="row" class="text: dark;">{{ $asset->quantity }}</td>
-
+                                    <td scope="row" class="text-center text-dark">{{ $asset->lab_name }}</td>
+                                    <td scope="row" class="text-center text-dark">{{ $asset->asset_name }}</td>
+                                    <td scope="row" class="text-center text-dark">{{ $asset->asset_status }}</td>
+                                    <td scope="row" class="text-dark">{{ $asset->quantity }}</td>
                                         <td>
-                                            <!-- Edit Button-->
-                                            <a href="{{ route('ManageLabAsset.edit', $asset->asset_ID) }}"> <button class="btn btn-primary" type="edit "><i class="fa fa-pencil-square-o"></i></button></a>
+                                            <!-- Edit Button -->
+                                            <a> <button class="btn btn-primary" href="{{ route('ManageLabAsset.CreateLabAsset') }} " type="edit "><i class="fa fa-pencil-square-o"></i></button></a>
+
+
+                                            <!-- Delete Button-->
+                                            <form method="POST" action="{{ route('assets.destroy', ['asset' => $asset->asset_ID]) }}" style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger" type="delete"><i class="fa fa-trash"></i></button>
+                                            </form>
 
                                         </td>
                                     </tr>

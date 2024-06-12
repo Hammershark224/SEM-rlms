@@ -16,18 +16,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'username' => 'admin',
-            'phone_num' => '0123456789',
-            'email' => 'admin@argon.com',
+            'username' => 'tech1',
+            'phone_num' => '0195757863',
+            'email' => 'tech1@argon.com',
             'gender' => 'male',
-            'role' => 'admin',
-            'password' => bcrypt('secret')
+            'role' => 'technical',
+            'password' => bcrypt('tech1')
         ]);
 
-        DB::table('system_administration_details')->insert([
-            'user_ID' => 1,
-            'staff_ID' => '01231',
-            'position' => 'Administrator',
-        ]);
+
     }
 }

@@ -62,11 +62,14 @@ Route::put('/complaints/{complaint}', [ComplaintController::class, 'update'])->n
 Route::delete('/complaints/{complaint}', [ComplaintController::class, 'destroy'])->name('complaints.destroy');
 
 Route::get("/Response", [ResponseController::class, 'index'])->name("ManageResponse.Response");
+
 Route::get('/LabAsset',[AssetController::class, 'index'])->name('ManageLabAsset.LabAsset');
 Route::get('/LabAsset/create',[AssetController::class, 'create'])->name('ManageLabAsset.CreateLabAsset');
 Route::get('/store',[AssetController::class, 'create'])->name('ManageLabAsset.create');
 Route::post('/store',[AssetController::class, 'store'])->name('ManageLabAsset.store');
-Route::delete('LabAsset/{assetDetail}', [AssetController::class, 'destroy'])->name('assets.destroy');
+Route::delete('LabAsset/{asset}', [AssetController::class, 'destroy'])->name('assets.destroy');
+Route::get('/searchAsset', [AssetController::class, 'search'])->name('asset.search');
+
 
 Route::get('/ViewLabAssetTech',[AssetController::class, 'index2'])->name('ManageLabAsset.ViewLabAssetTech');
 Route::get('/ViewLabAssetTech/{assetDetails}/edit', [AssetController::class, 'edit'])->name('ManageLabAsset.edit');

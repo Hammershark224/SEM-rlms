@@ -2,12 +2,12 @@
 
 @section('content')
     @include('layouts.navbars.auth.topnav', ['title' => 'Table update'])
-    
+
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <form role="form" method="POST" action="{{ route('ManageLabAsset.update', ['assetDetails' => $assetDetail->id]) }}" enctype="multipart/form-data">
+                    <form role="form" method="POST" action="{{ route('ManageLabAsset.update', ['assetDetails' => $assetDetail->asset_ID]) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="card-header pb-0">
@@ -22,7 +22,7 @@
                                         <label for="example-text-input" class="form-control-label">Lab Name</label>
                                         <input class="form-control" type="text" name="lab_name" value="{{ old('lab_name', $assetDetail->lab_name) }}">
                                     </div>
-                                </div>   
+                                </div>
                                 <div class="col-sm-6" style="margin-bottom: 20px;">
                                     <label for="inputName5" class="form-label">Asset Status</label>
                                     <select class="form-select" name="asset_status" id="assetstatus" aria-label="Default select example">

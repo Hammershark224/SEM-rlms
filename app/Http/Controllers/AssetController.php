@@ -15,7 +15,7 @@ class AssetController extends Controller
     public function create(){
         return view('ManageLabAsset.CreateLabAsset');
     }
-    
+
     public function store(Request $request){
 
         $request->validate([
@@ -23,20 +23,19 @@ class AssetController extends Controller
             'asset_name'=>'required|string',
             'asset_status'=>'required|string',
             'quantity'=>'required|numeric',
-        ]); 
+        ]);
 
         $assetDetails = new AssetDetail();
         $assetDetails->lab_name = $request -> input('lab_name');
         $assetDetails->asset_name = $request->input('asset_name');
         $assetDetails->asset_status =  $request->input('asset_status');
         $assetDetails->quantity =  $request->input('quantity');
-    
+
         $assetDetails->save();
-      
 
         return redirect(route('ManageLabAsset.LabAsset'));
     }
-    
+
     public function edit(AssetDetail $assetDetails){
 
         $asset = AssetDetail::find($assetDetails->id);
@@ -59,11 +58,23 @@ class AssetController extends Controller
     return redirect()->route('ManageLabAsset.ViewLabAssetTech');
     }
 
-    public function destroy(AssetDetail $assetDetail)
+    public function destroy(AssetDetail $asset)
     {
-         $assetDetail->delete();
+        $asset->delete();
 
     return redirect()->route('ManageLabAsset.LabAsset');
+    }
+
+    public function search(Request $request){
+
+        $search = $request->input('search');
+
+        $assets = AssetDetail::when($search, function($query, $search) {
+            return $query->where('asset_name', 'like', '%' . $search . '%');
+        })->get();
+
+        return view('ManageLabAsset.SearchAsset', ['assets' => $assets]);
+
     }
 
 
